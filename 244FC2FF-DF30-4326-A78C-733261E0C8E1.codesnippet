@@ -7,23 +7,22 @@
 		<string>CodeBlock</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-    if (version &gt;= 7.0)
-    {
-        &lt;#To Do In 7.0#&gt;
+	<string>    NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+    if (ubiq) {
+        NSLog(@"iCloud access at %@", ubiq);
+        // TODO: Load document... 
+        [self loadDocument];
     } else {
-        &lt;#Other#&gt;
+        NSLog(@"No iCloud access");
     }</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>D123FCCA-650F-4AD3-AF1C-8FD642636B72</string>
+	<string>244FC2FF-DF30-4326-A78C-733261E0C8E1</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
-	<key>IDECodeSnippetPlatformFamily</key>
-	<string>iphoneos</string>
 	<key>IDECodeSnippetSummary</key>
-	<string>获取设备的版本号</string>
+	<string>本地iCloud文件夹路径的获取</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>获取设备的版本号</string>
+	<string>UbiquityContainer</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

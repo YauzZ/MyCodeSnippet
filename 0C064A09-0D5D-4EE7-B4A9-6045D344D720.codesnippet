@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)queryDidFinishGathering:(NSNotification *)notification {
+    
+    NSMetadataQuery *query = [notification object];
+    
+    // 停止更新查询结果
+    [query disableUpdates];
+    
+    // 停止接收当前查询中未处理完的结果
+    [query stopQuery];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:NSMetadataQueryDidFinishGatheringNotification
+                                                  object:query];
+    
+    _query = nil;
+    
+	[self loadData:query];
+    
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0C064A09-0D5D-4EE7-B4A9-6045D344D720</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>查询结果的处理</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>NSMetadataQuery</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

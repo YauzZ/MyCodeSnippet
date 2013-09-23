@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/**
+ *  将对象写入指定的wrappers中
+ *
+ *	@param 	object 	可序列化的对象
+ *	@param 	wrappers 	字典容器
+ *	@param 	preferredFilename 	文件名，用于键值
+ */
+- (void)encodeObject:(id&lt;NSCoding&gt;)object toWrappers:(NSMutableDictionary *)wrappers preferredFilename:(NSString *)preferredFilename {
+    @autoreleasepool {            
+        NSMutableData * data = [NSMutableData data];
+        NSKeyedArchiver * archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+        [archiver encodeObject:object forKey:@"data"];
+        [archiver finishEncoding];
+        NSFileWrapper * wrapper = [[NSFileWrapper alloc] initRegularFileWithContents:data];
+        [wrappers setObject:wrapper forKey:preferredFilename];
+    }
+}
+
+
+/**
+ *	根据指定的文件名解码相应的对象
+ *
+ *	@param 	wrapper 	传入的包装器
+ *	@param 	preferredFilename 	文件名，用于键值
+ *
+ *	@return	解码以后的对象
+ */
+- (id)decodeObjectFromWrapperFromWrapper:(NSFileWrapper *)wrapper WithPreferredFilename:(NSString *)preferredFilename {
+    
+    NSFileWrapper * fileWrapper = [wrapper.fileWrappers objectForKey:preferredFilename];
+    if (!fileWrapper) {
+        NSLog(@"Unexpected error: Couldn't find %@ in file wrapper!", preferredFilename);
+        return nil;
+    }
+    
+    NSData * data = [fileWrapper regularFileContents];
+    NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    
+    return [unarchiver decodeObjectForKey:@"data"];
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>193D0AE5-A6DF-4979-AF0A-450CBEA89E89</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>简便的使用方法</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>NSWrapper</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

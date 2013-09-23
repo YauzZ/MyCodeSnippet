@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)loadNotes {
+    
+    NSURL *ubiq = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+    
+    if (ubiq) {
+        
+        // 设置查询条件
+        self.query = [[NSMetadataQuery alloc] init];
+        [self.query setSearchScopes:[NSArray arrayWithObject:NSMetadataQueryUbiquitousDocumentsScope]];
+        NSPredicate *pred = [NSPredicate predicateWithFormat: @"%K like 'Note_*'", NSMetadataItemFSNameKey];
+        [self.query setPredicate:pred];
+        
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(queryDidFinishGathering:) 
+                                                     name:NSMetadataQueryDidFinishGatheringNotification 
+                                                   object:self.query];
+        
+        [self.query startQuery];
+        
+    } else {
+        
+        NSLog(@"No iCloud access");
+        
+    }
+    
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>ED94DB96-3119-44DF-B6CD-C1FF2997C124</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>查询iCloud本地文件夹中指定前缀的文件</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>NSMetadataQuery</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

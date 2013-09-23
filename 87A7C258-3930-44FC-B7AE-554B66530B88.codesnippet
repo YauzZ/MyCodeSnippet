@@ -39,8 +39,10 @@
 	<string>87A7C258-3930-44FC-B7AE-554B66530B88</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>DataSource Delegate</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>TableDataSource</string>
+	<string>UITableView</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

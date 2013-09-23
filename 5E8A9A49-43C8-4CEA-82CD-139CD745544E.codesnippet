@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)loadData:(NSMetadataQuery *)query
+{
+    // 清空原先的数据
+    [self.notes removeAllObjects];
+ 
+    // 解析数据并处理
+    for (NSMetadataItem *item in [query results]) {
+        
+        NSURL *url = [item valueForAttribute:NSMetadataItemURLKey];
+        Note *doc = [[Note alloc] initWithFileURL:url];
+        
+        // 异步加载，每次成功打开后都需要刷新tableView
+        [doc openWithCompletionHandler:^(BOOL success) {
+            if (success) {
+                [self.notes addObject:doc];
+                [self.tableView reloadData];
+            } else {
+                NSLog(@"failed to open from iCloud");
+            }
+        }];
+    }
+} </string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5E8A9A49-43C8-4CEA-82CD-139CD745544E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>处理多项数据</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>NSMetadataQuery</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

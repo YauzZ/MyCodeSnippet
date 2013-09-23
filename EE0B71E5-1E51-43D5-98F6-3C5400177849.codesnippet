@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)loadDocument {
+    
+    NSMetadataQuery *query = [[NSMetadataQuery alloc] init];
+    _query = query;
+    
+    // 设置查询范围为iCloud中Document下的所有文件
+    [query setSearchScopes:[NSArray arrayWithObject:NSMetadataQueryUbiquitousDocumentsScope]];
+    
+    // 设置查询限制条件
+    NSPredicate *pred = [NSPredicate predicateWithFormat: @"%K == %@", NSMetadataItemFSNameKey, kFILENAME];
+    [query setPredicate:pred];
+    
+    // 注册回调消息
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queryDidFinishGathering:) name:NSMetadataQueryDidFinishGatheringNotification object:query];
+    
+    [query startQuery];
+    
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>EE0B71E5-1E51-43D5-98F6-3C5400177849</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>查询文件</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>NSMetadataQuery</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
