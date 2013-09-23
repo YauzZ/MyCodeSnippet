@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>button_all</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>UIButton *&lt;#button#&gt; = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(200, 800, 100, 50);
+    [button setTitle:@"autoplay" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(autoplay) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:button];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>DD9DC2FE-C250-4FED-8633-840124A2E3D1</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>button</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>button_all</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

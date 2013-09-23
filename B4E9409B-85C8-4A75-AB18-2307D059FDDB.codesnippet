@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>uidocument</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#define DATA_FILENAME       @"&lt;#photo.data#&gt;"
+
+@interface &lt;#SubUIDocument#&gt; ()
+@property (nonatomic, strong) NSFileWrapper * fileWrapper;
+@end
+
+@implementation &lt;#SubUIDocument#&gt;
+@synthesize fileWrapper = _fileWrapper;
+
+- (void)encodeObject:(id&lt;NSCoding&gt;)object toWrappers:(NSMutableDictionary *)wrappers preferredFilename:(NSString *)preferredFilename {
+    @autoreleasepool {            
+        NSMutableData * data = [NSMutableData data];
+        NSKeyedArchiver * archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+        [archiver encodeObject:object forKey:@"data"];
+        [archiver finishEncoding];
+        NSFileWrapper * wrapper = [[NSFileWrapper alloc] initRegularFileWithContents:data];
+        [wrappers setObject:wrapper forKey:preferredFilename];
+    }
+}
+
+- (id)contentsForType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
+    
+    if (self.metadata == nil || self.data == nil) {        
+        return nil;    
+    }
+    
+    NSMutableDictionary * wrappers = [NSMutableDictionary dictionary];
+    [self encodeObject:self.data toWrappers:wrappers preferredFilename:DATA_FILENAME];   
+    NSFileWrapper * fileWrapper = [[NSFileWrapper alloc] initDirectoryWithFileWrappers:wrappers];
+    
+    return fileWrapper;
+}
+
+- (id)decodeObjectFromWrapperWithPreferredFilename:(NSString *)preferredFilename {
+    
+    NSFileWrapper * fileWrapper = [self.fileWrapper.fileWrappers objectForKey:preferredFilename];
+    if (!fileWrapper) {
+        NSLog(@"Unexpected error: Couldn't find %@ in file wrapper!", preferredFilename);
+        return nil;
+    }
+    
+    NSData * data = [fileWrapper regularFileContents];    
+    NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    
+    return [unarchiver decodeObjectForKey:@"data"];
+    
+}
+
+- (BOOL)loadFromContents:(id)contents ofType:(NSString *)typeName error:(NSError *__autoreleasing *)outError {
+    
+    self.fileWrapper = (NSFileWrapper *) contents;
+    
+    // The rest will be lazy loaded...
+    self.data = nil;
+    self.metadata = nil;
+    
+    return YES;
+    
+}
+
+- (NSString *) description {
+    return [[self.fileURL lastPathComponent] stringByDeletingPathExtension];
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B4E9409B-85C8-4A75-AB18-2307D059FDDB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>UIDocument子类化时需要实现的存取方法</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>My Code Snippet</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
