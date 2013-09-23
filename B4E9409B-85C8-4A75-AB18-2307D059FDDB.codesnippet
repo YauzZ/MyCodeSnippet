@@ -9,7 +9,7 @@
 		<string>ClassImplementation</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>#define DATA_FILENAME       @"&lt;#photo.data#&gt;"
+	<string>#define DATA_FILENAME       @"&lt;#FileName#&gt;"
 
 @interface &lt;#SubUIDocument#&gt; ()
 @property (nonatomic, strong) NSFileWrapper * fileWrapper;
@@ -61,10 +61,8 @@
     
     self.fileWrapper = (NSFileWrapper *) contents;
     
-    // The rest will be lazy loaded...
-    self.data = nil;
-    self.metadata = nil;
-    
+    // The rest will be lazy loaded..
+
     return YES;
     
 }
@@ -80,7 +78,7 @@
 	<key>IDECodeSnippetSummary</key>
 	<string>UIDocument子类化时需要实现的存取方法</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>My Code Snippet</string>
+	<string>UIDocument</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>

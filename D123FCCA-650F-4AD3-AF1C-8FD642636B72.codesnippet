@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (version &gt;= 7.0)
+    {
+        &lt;#To Do In 7.0#&gt;
+    } else {
+        &lt;#Other#&gt;
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D123FCCA-650F-4AD3-AF1C-8FD642636B72</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetPlatformFamily</key>
+	<string>iphoneos</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>获取设备的版本号</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>获取设备的版本号</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
